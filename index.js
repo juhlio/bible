@@ -15,25 +15,6 @@ const verses = require('./verses');
     }
 })();
 
-/* newUser();
-async function newUser() {
-
-    var config = {
-        method: 'post',
-        url: `https://www.abibliadigital.com.br/api/users`,
-        name: "Julio",
-        email: "julioramos.esporte@gmail.com",
-        password: "250133",
-        notifications: true,
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-        }
-    };
-
-    let resposta = await axios.post('https://www.abibliadigital.com.br/api/users', config);
-    console.log(resposta)
-} */
 
 
 async function getVerses() {
