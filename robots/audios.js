@@ -10,8 +10,11 @@ async function robot() {
 
 
     const client = new textToSpeech.TextToSpeechClient();
-    let v = await verses.findByPk(195)
+    
+    let v = await verses.findByPk(197)
     newAudio(v)
+
+    
     async function newAudio(v) {
 
         let config = {
@@ -19,9 +22,9 @@ async function robot() {
 
             idVerse: v.id,
             book: v.bookAbbrev,
-            chapter: 8,
-            verse: 11,
-            text: 'E a pomba voltou a ele à tarde; e eis, arrancada, uma folha de oliveira no seu bico; e conheceu Noé que as águas tinham minguado de sobre a terra.',
+            chapter: v.chapterNumber,
+            verse: v.verseNumber,
+            text: v.verse,
 
         }
 
