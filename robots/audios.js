@@ -10,11 +10,21 @@ async function robot() {
 
 
     const client = new textToSpeech.TextToSpeechClient();
-    
-    let v = await verses.findByPk(197)
-    newAudio(v)
 
-    
+   /*  let v = await verses.findByPk(197)
+    newAudio(v)
+ */
+
+    let v = await verses.findAll({
+        where: {
+            bookAbbrev: "gn",
+            chapterNumber: 1,
+        }
+    })
+
+    v.forEach(newAudio)
+
+
     async function newAudio(v) {
 
         let config = {
