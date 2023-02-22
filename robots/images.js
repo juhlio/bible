@@ -97,7 +97,7 @@ async function robot() {
         await page.type('[name=password]', "Ju7Li8o9")
         await page.keyboard.press('Enter');
 
-        await page.waitForTimeout(10000);
+        await page.waitForTimeout(20000);
         await page.type('div[data-slate-node="element"]', '/imagine');
         await page.waitForTimeout(3000);
         await page.keyboard.press('Tab');
@@ -113,7 +113,7 @@ async function robot() {
         await page.waitForTimeout(60000);
 
         await page.goto('https://discord.com/channels/1077326214852776027/1077326214852776030');
-        await page.waitForTimeout(15000);
+        await page.waitForTimeout(30000);
 
 
         let messagesAgain = await page.$$('li.messageListItem-ZZ7v6g');
@@ -126,7 +126,7 @@ async function robot() {
         console.log(linkImage);
 
         //const imageUrl = 'https://example.com/image.jpg';
-        const imagePath = `./images/${v.book}-${v.chapter}-${v.verse}_${v.idVerse}.png`;
+        const imagePath = `./images/${v.bookAbbrev}-${v.chapterNumber}-${v.verseNumber}_${v.idVerse}.png`;
         downloadImage(linkImage, imagePath);
         await browser.close();
 
