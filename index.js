@@ -20,6 +20,7 @@ const robots = {
     books: require('./robots/books'),
     verses: require('./robots/verses'),
     audios: require('./robots/audios'),
+    images: require('./robots/images'),
 
 }
 
@@ -51,7 +52,8 @@ async function start() {
 
     //await robots.books()
     //await robots.verses()
-    await robots.audios()
+    //await robots.audios()
+    await robots.images()
 }
 
 start()
