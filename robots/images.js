@@ -99,7 +99,7 @@ async function robot() {
 
         await page.waitForTimeout(20000);
         await page.type('div[data-slate-node="element"]', '/imagine');
-        await page.waitForTimeout(3000);
+        await page.waitForTimeout(4000);
         await page.keyboard.press('Tab');
         await page.waitForTimeout(1000);
         await page.keyboard.type(v.verse);
