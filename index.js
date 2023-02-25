@@ -21,6 +21,7 @@ const robots = {
     verses: require('./robots/verses'),
     audios: require('./robots/audios'),
     images: require('./robots/images'),
+    analysetext: require('./robots/analysetext'),
 
 }
 
@@ -53,7 +54,8 @@ async function start() {
     //await robots.books()
     //await robots.verses()
     //await robots.audios()
-    await robots.images()
+    //await robots.images()
+    await robots.analysetext()
 }
 
 start()
