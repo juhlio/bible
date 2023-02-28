@@ -1,29 +1,24 @@
 const Sequelize = require('sequelize');
 const database = require('../db');
 
-const bibleVerses = database.define('bibleVerses', {
+const audios = database.define('audios', {
     id: {
         type: Sequelize.INTEGER,
         autoIncrement: true,
         allowNull: false,
         primaryKey: true
     },
+    idVerse: Sequelize.INTEGER,
     bookAbbrev: {
         type: Sequelize.STRING,
         allowNull: true,
     },
     chapterNumber: Sequelize.INTEGER,
-    totalVerses: Sequelize.INTEGER,
     verseNumber: Sequelize.INTEGER,
-    verse: Sequelize.STRING,
-    handled: {
-        type: Sequelize.BOOLEAN,
-        allowNull: false,
-        defaultValue: false
-    }
+    audioFile: Sequelize.STRING,
 
 
 
 })
 
-module.exports = bibleVerses;
+module.exports = audios;

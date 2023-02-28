@@ -3,26 +3,17 @@ const fs = require('fs');
 const util = require('util');
 const books = require('../bdfiles/books');
 const verses = require('../bdfiles/verses');
+const audios = require('../bdfiles/audios');
 
 
-async function robot() {
+async function robot(v) {
 
 
 
     const client = new textToSpeech.TextToSpeechClient();
 
-   /*  let v = await verses.findByPk(197)
+
     newAudio(v)
- */
-
-    let v = await verses.findAll({
-        where: {
-            bookAbbrev: "gn",
-            chapterNumber: 1,
-        }
-    })
-
-    v.forEach(newAudio)
 
 
     async function newAudio(v) {
@@ -51,16 +42,27 @@ async function robot() {
             audioConfig: { audioEncoding: 'MP3' },
         };
 
+        let audioName = `${config.book}-${config.chapter}-${config.verse}_${config.idVerse}.mp3`
         // Performs the text-to-speech request
         const [response] = await client.synthesizeSpeech(request);
         // Write the binary audio content to a local file
         const writeFile = util.promisify(fs.writeFile);
-        await writeFile(`../bible/audios/${config.book}-${config.chapter}-${config.verse}_${config.idVerse}.mp3`, response.audioContent, 'binary');
+        await writeFile(`../bible/audios/${audioName}`, response.audioContent, 'binary');
         console.log(`Audio content written to file: ${config.book}-${config.chapter}-${config.verse}_${config.idVerse}.mp3`);
+
+        const createAudio = await audios.create({
+            idVerse: config.idVerse,
+            bookAbbrev: config.book,
+            chapterNumber: config.chapter,
+            verseNumber: config.verse,
+            audioFile: audioName,
+        })
+
     }
 
+    return v
 
-    //newAudio();
+    
 
 }
 
