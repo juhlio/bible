@@ -1,5 +1,6 @@
 // Imports the Google Cloud client library
 const { Translate } = require('@google-cloud/translate').v2;
+const discord = require('../credentials/discord.json')
 
 // Creates a client
 const translate = new Translate();
@@ -34,8 +35,8 @@ async function robot(v) {
         await page.goto('https://discord.com/channels/1077326214852776027/1077326214852776030');
         await page.waitForNavigation();
         await page.waitForTimeout(10000);
-        await page.type('[name=email]', "julioramos.esporte@gmail.com")
-        await page.type('[name=password]', "Ju7Li8o9")
+        await page.type('[name=email]', discord.email)
+        await page.type('[name=password]', discord.pass)
         await page.waitForTimeout(2000);
         await page.keyboard.press('Enter');
         await page.waitForNavigation();
