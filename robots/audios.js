@@ -30,8 +30,6 @@ async function robot(v) {
         }
 
 
-        // The text to synthesize
-        const text = 'No princípio criou Deus o céu e a terra.';
 
         // Construct the request
         const request = {

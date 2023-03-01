@@ -1,3 +1,4 @@
-audios
-images
+audios/
+images/
 node_modules
+credentials/

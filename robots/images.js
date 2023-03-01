@@ -17,7 +17,7 @@ const images = require('../bdfiles/images');
 
 async function robot(v) {
 
-    console.log('robo de imagens')
+    console.log('robo de imagens on')
 
     
 
