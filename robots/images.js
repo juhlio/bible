@@ -1,21 +1,15 @@
 // Imports the Google Cloud client library
-const { Translate } = require('@google-cloud/translate').v2;
 const discord = require('../credentials/discord.json')
-
-// Creates a client
-const translate = new Translate();
-
 
 
 const puppeteer = require('puppeteer');
-//import fetch from 'node-fetch';
 const fs = require('fs');
 const fetch = require('node-fetch');
 const books = require('../bdfiles/books');
 const verses = require('../bdfiles/verses');
 const images = require('../bdfiles/images');
 
-
+let page;
 async function robot(v) {
 
     console.log('robo de imagens on')
@@ -30,25 +24,29 @@ async function robot(v) {
 
         try {
             //let verse = translateText(v.verse)
-            const browser = await puppeteer.launch({ headless: true });
-            const page = await browser.newPage();
-            console.log(`Abrindo o discord`)
-            await page.goto('https://discord.com/channels/1077326214852776027/1077326214852776030');
-            await page.waitForNavigation();
-            await page.waitForTimeout(10000);
-            await page.type('[name=email]', discord.email)
-            await page.type('[name=password]', discord.pass)
-            await page.waitForTimeout(2000);
-            await page.keyboard.press('Enter');
-            await page.waitForNavigation();
-            await page.goto('https://discord.com/channels/1077326214852776027/1077326214852776030');
-
-            console.log(`Login realizado começando a criação da imagem`)
+            if (typeof page === 'undefined') {
+                console.log(`Abrindo navegador`)
+                const browser = await puppeteer.launch({ headless: false });
+                page = await browser.newPage();
+                console.log(`Abrindo o discord`)
+                await page.goto('https://discord.com/channels/1077326214852776027/1077326214852776030');
+                await page.waitForNavigation();
+                await page.waitForTimeout(10000);
+                await page.type('[name=email]', discord.email)
+                await page.type('[name=password]', discord.pass)
+                await page.waitForTimeout(2000);
+                await page.keyboard.press('Enter');
+                await page.waitForNavigation();
+                await page.goto('https://discord.com/channels/1077326214852776027/1077326214852776030');
+                console.log(page)
+            }
+            console.log(page)
+            console.log(`Começando a criação da imagem`)
             await page.waitForTimeout(5000);
             await page.type('div[data-slate-node="element"]', '/imagine');
             await page.waitForTimeout(10000);
             await page.keyboard.press('Tab');
-            await page.waitForTimeout(5000);
+            await page.waitForTimeout(10000);
             await page.keyboard.type(v.keyWords);
             await page.waitForTimeout(3000);
             //await page.keyboard.type(verse);
@@ -62,7 +60,7 @@ async function robot(v) {
             const button = await lastMessage.$('button');
             await button.click();
             console.log(`Pedindo o up da primeira imagem`)
-            await page.waitForTimeout(60000);
+            await page.waitForTimeout(70000);
 
             await page.goto('https://discord.com/channels/1077326214852776027/1077326214852776030');
             //await page.waitForNavigation();
@@ -80,7 +78,7 @@ async function robot(v) {
             //const imageUrl = 'https://example.com/image.jpg';
             const imagePath = `./images/${imageName}`;
             downloadImage(linkImage, imagePath);
-            await browser.close();
+            //await browser.close();
             console.log(`Salvando informações no banco`)
             const createImage = await images.create({
                 idVerse: v.dataValues.id,
