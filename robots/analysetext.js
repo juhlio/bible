@@ -18,6 +18,7 @@ async function robot(v) {
 
     });
 
+    let noList = ['carne']
 
     //console.log(extractedKeywords);
     let palavrasChave = ''
@@ -27,22 +28,27 @@ async function robot(v) {
      ) */
 
     for (let item of extractedKeywords) {
-        palavrasChave += item+', '
+        if (noList.includes(item)) {
+
+        } else {
+            palavrasChave += item + ', '
+        }
+
     }
     console.log(palavrasChave)
-    
-        let keyWords = await translateText(palavrasChave)
-        v.keyWords = keyWords
-    
-    
-        const createkey = await key.create({
-            idVerse: v.dataValues.id,
-            bookAbbrev: v.dataValues.bookAbbrev,
-            chapterNumber: v.dataValues.chapterNumber,
-            verseNumber: v.dataValues.verseNumber,
-            ptKeys: palavrasChave,
-            enKeys: v.keyWords[0],
-        })  
+
+    let keyWords = await translateText(palavrasChave)
+    v.keyWords = keyWords
+
+
+    const createkey = await key.create({
+        idVerse: v.dataValues.id,
+        bookAbbrev: v.dataValues.bookAbbrev,
+        chapterNumber: v.dataValues.chapterNumber,
+        verseNumber: v.dataValues.verseNumber,
+        ptKeys: palavrasChave,
+        enKeys: v.keyWords[0],
+    })
 
 
 

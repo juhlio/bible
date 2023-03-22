@@ -46,7 +46,7 @@ async function robot(v) {
             await page.type('div[data-slate-node="element"]', '/imagine');
             await page.waitForTimeout(10000);
             await page.keyboard.press('Tab');
-            await page.waitForTimeout(10000);
+            await page.waitForTimeout(15000);
             await page.keyboard.type(v.keyWords);
             await page.waitForTimeout(3000);
             //await page.keyboard.type(verse);
