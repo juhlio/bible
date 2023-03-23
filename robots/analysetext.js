@@ -18,7 +18,7 @@ async function robot(v) {
 
     });
 
-    let noList = ['carne']
+    let noList = ['carne', 'nudez']
 
     //console.log(extractedKeywords);
     let palavrasChave = ''
