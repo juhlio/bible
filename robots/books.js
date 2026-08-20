@@ -1,3 +1,4 @@
+require('dotenv').config();
 const axios = require('axios');
 const books = require('../bdfiles/books');
 
@@ -9,7 +10,7 @@ async function robot() {
             {
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IlRodSBGZWIgMTYgMjAyMyAxMzoyNjoyOCBHTVQrMDAwMC5qdWxpb3JhbW9zLmVzcG9ydGVAZ21haWwuY29tIiwiaWF0IjoxNjc2NTUzOTg4fQ.FRY5EHQxhmagki9e9EH4DoR4HUBRs0S8pEshjH10cq0'
+                    'Authorization': `Bearer ${process.env.BIBLE_API_TOKEN}`
                 }
             })
 

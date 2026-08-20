@@ -2,3 +2,4 @@ audios/
 images/
 node_modules
 credentials/
+.env
